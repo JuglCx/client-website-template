@@ -41,33 +41,35 @@ export default function App() {
     };
     window.addEventListener("scroll", handleScroll);
 
-    if (window.jugl) {
-   const chatbot = new window.jugl.ChatBot({
-      token: chatbotConfig.token,
-      conversationId: chatbotConfig.conversationId,
-      chatbotUrl: chatbotConfig.chatbotUrl,
-      settings: chatbotConfig.settings,
-    });
-
-    console.log("Chatbot initialized:", chatbot);
-  } else {
-    console.error("Jugl SDK not loaded");
-  }
-
     fetch(apiConfig.url, {
-    method: "POST",
-    headers: {
-      Authorization: apiConfig.token,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      business_name: apiConfig.business_name,
-      knowledge: apiConfig.knowledge,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => console.log("API success:", data))
-    .catch((err) => console.error("API error:", err));
+      method: "POST",
+      headers: {
+        Authorization: apiConfig.token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        business_name: apiConfig.business_name,
+        knowledge: apiConfig.knowledge,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("API success:", data);
+
+        if (window.jugl) {
+          const chatbot = new window.jugl.ChatBot({
+            token: chatbotConfig.token,
+            conversationId: data.conv_id,
+            chatbotUrl: chatbotConfig.chatbotUrl,
+            settings: chatbotConfig.settings,
+          });
+
+          console.log("Chatbot initialized:", chatbot);
+        } else {
+          console.error("Jugl SDK not loaded");
+        }
+      })
+      .catch((err) => console.error("API error:", err));
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
