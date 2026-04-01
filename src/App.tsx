@@ -178,46 +178,38 @@ export default function App() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
-            <div className="w-12 h-1 bg-primary mx-auto rounded-full" />
-          </div>
+<section id="features" className="py-24 bg-white">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+      <div className="w-12 h-1 bg-primary mx-auto rounded-full" />
+    </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {siteConfig.features.map((feature, index) => {
-              const Icon = IconMap[feature.icon] || Palette;
-              return (
-                <motion.div
-                  key={feature.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group p-8 rounded-3xl border border-slate-100 hover:border-primary/20 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300"
-                >
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                    <Icon className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                  <p className="text-slate-600 leading-relaxed mb-6">
-                    {feature.description}
-                  </p>
-                  <div className="aspect-video rounded-xl overflow-hidden">
-                    <img 
-                      src={feature.imageUrl} 
-                      alt={feature.title} 
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+    <div className="grid md:grid-cols-3 gap-8">
+      {siteConfig.features.map((feature, index) => {
+        const Icon = IconMap[feature.icon] || Palette;
+        return (
+          <motion.div
+            key={feature.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className="group p-8 rounded-3xl border border-slate-100 hover:border-primary/20 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+              <Icon className="w-7 h-7" />
+            </div>
+            <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+            <p className="text-slate-600 leading-relaxed">
+              {feature.description}
+            </p>
+          </motion.div>
+        );
+      })}
+    </div>
+  </div>
+</section>
 
       {/* About Section */}
       <section id="about" className="py-24 bg-slate-50">
