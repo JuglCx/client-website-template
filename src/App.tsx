@@ -176,9 +176,7 @@ export default function App() {
           </motion.div>
         </div>
       </section>
-
-const randomIcons = [Sparkles, Globe, Rocket, Code, Layers];
-
+{/* Features Section */}
 <section id="features" className="py-24 bg-white">
   <div className="max-w-7xl mx-auto px-6">
     <div className="text-center mb-16">
@@ -188,8 +186,8 @@ const randomIcons = [Sparkles, Globe, Rocket, Code, Layers];
 
     <div className="grid md:grid-cols-3 gap-8">
       {siteConfig.features.map((feature, index) => {
-        const Icon = randomIcons[index % randomIcons.length];
-
+        const icons = [Palette, Brush, Sparkles];
+        const Icon = icons[index % icons.length];
         return (
           <motion.div
             key={feature.id}
@@ -202,7 +200,6 @@ const randomIcons = [Sparkles, Globe, Rocket, Code, Layers];
             <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
               <Icon className="w-7 h-7" />
             </div>
-
             <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
             <p className="text-slate-600 leading-relaxed">
               {feature.description}
