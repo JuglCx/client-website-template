@@ -1,4 +1,4 @@
-const configFiles = import.meta.glob("../*/{api-config,chatbot-config,site-config}.json");
+const configFiles = import.meta.glob("../clients/*/{api-config,chatbot-config,site-config}.json");
 
 export async function loadConfigs(brand: string) {
   const loadJson = async (file: string) => {
@@ -12,7 +12,7 @@ export async function loadConfigs(brand: string) {
     return mod.default;
   };
 
-  const basePath = `../${brand}`;
+  const basePath = `../clients/${brand}`;
 
   const [apiConfig, chatbotConfig, siteConfig] = await Promise.all([
     loadJson(`${basePath}/api-config.json`),
